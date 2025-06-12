@@ -16,7 +16,6 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useAuth } from "../../../context/AuthContext";
-import { authService } from "../services/authService";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -60,6 +59,7 @@ const Login = () => {
       } else {
         setError("Invalid username or password");
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setError("An error occurred during login");
     } finally {

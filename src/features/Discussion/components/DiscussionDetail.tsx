@@ -112,7 +112,7 @@ const DiscussionDetail = () => {
   const filterAndSortAnswers = () => {
     if (!discussion) return;
 
-    let sorted = [...discussion.answers];
+    const sorted = [...discussion.answers];
 
     switch (answerSortBy) {
       case "newest":

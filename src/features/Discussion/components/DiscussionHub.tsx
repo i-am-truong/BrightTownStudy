@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   Typography,
@@ -14,8 +14,8 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
-  Grid,
 } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import {
   Add as AddIcon,
   QuestionAnswer,
@@ -27,6 +27,16 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { discussionService } from "../services/discussionService";
+
+interface Answer {
+  id: string;
+  content: string;
+  authorId: string;
+  authorName: string;
+  createdAt: string;
+  updatedAt: string | null;
+  isEdited: boolean;
+}
 
 interface Discussion {
   id: string;
@@ -43,13 +53,13 @@ interface Discussion {
   userVotes: { [userId: string]: "upvote" | "downvote" };
   views: number;
   viewedBy: string[];
-  answers: any[];
+  answers: Answer[];
 }
 
 const DiscussionHub = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [discussions, setDiscussions] = useState<Discussion[]>([]);
   const [filteredDiscussions, setFilteredDiscussions] = useState<Discussion[]>(
     []
@@ -203,7 +213,7 @@ const DiscussionHub = () => {
       {/* Filters */}
       <Box sx={{ mb: 4 }}>
         <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <TextField
               fullWidth
               placeholder="Search questions..."
@@ -212,7 +222,7 @@ const DiscussionHub = () => {
               size="small"
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid size={{ xs: 12, md: 3 }}>
             <FormControl fullWidth size="small">
               <InputLabel>Sort by</InputLabel>
               <Select
@@ -345,7 +355,7 @@ const DiscussionHub = () => {
           <Pagination
             count={totalPages}
             page={currentPage}
-            onChange={(event, value) => setCurrentPage(value)}
+            onChange={(_event, value) => setCurrentPage(value)}
             color="primary"
             size="large"
             showFirstButton

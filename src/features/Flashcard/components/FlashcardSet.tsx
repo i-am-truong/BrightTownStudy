@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import type { FlashcardSetMeta } from "../types";
 import { useAuth } from "../../../context/AuthContext";
 
@@ -14,7 +14,6 @@ const FlashcardSet: React.FC<FlashcardSetProps> = ({
   onEdit,
   onDelete,
   onPlay,
-  
 }) => {
   const { user } = useAuth();
   const userId = user?.id || "";
@@ -31,9 +30,9 @@ const FlashcardSet: React.FC<FlashcardSetProps> = ({
     onPlay(FlashcardSet.id);
   };
 
-  const isUserOwner = () =>{
+  const isUserOwner = () => {
     return FlashcardSet.userId == userId;
-  }
+  };
 
   return (
     <div className="flex items-center justify-between bg-white/90 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 h-20">
@@ -70,50 +69,49 @@ const FlashcardSet: React.FC<FlashcardSetProps> = ({
           <div className="flex items-center gap-3 ml-6">
             {/* Edit button */}
             {isUserOwner() && (
-            <button
-              onClick={handleEdit}
-              className="p-2 text-gray-500 hover:text-[#1976D2] hover:bg-blue-50 rounded-lg transition-all duration-200 group"
-              title="Edit flashcard set"
-            >
-              <svg
-                className="w-5 h-5 group-hover:scale-110 transition-transform duration-200"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+              <button
+                onClick={handleEdit}
+                className="p-2 text-gray-500 hover:text-[#1976D2] hover:bg-blue-50 rounded-lg transition-all duration-200 group"
+                title="Edit flashcard set"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                />
-              </svg>
-            </button>
+                <svg
+                  className="w-5 h-5 group-hover:scale-110 transition-transform duration-200"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                  />
+                </svg>
+              </button>
             )}
 
             {/* Delete button */}
-            {isUserOwner()&& (
+            {isUserOwner() && (
               <button
-              onClick={handleDelete}
-              className="p-2 text-gray-500 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all duration-200 group"
-              title="Delete flashcard set"
-            >
-              <svg
-                className="w-5 h-5 group-hover:scale-110 transition-transform duration-200"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                onClick={handleDelete}
+                className="p-2 text-gray-500 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all duration-200 group"
+                title="Delete flashcard set"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                />
-              </svg>
-            </button>
+                <svg
+                  className="w-5 h-5 group-hover:scale-110 transition-transform duration-200"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                  />
+                </svg>
+              </button>
             )}
-            
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   AppBar,
   Box,
@@ -43,8 +43,6 @@ const PAGES: readonly NavPage[] = [
   { name: "Discussion Hub", path: "/talk" },
 ] as const;
 
-const NAVIGATION_TABS = PAGES.slice(1);
-
 const BRAND_NAME = "Bright Town Study";
 
 const COMMON_TYPOGRAPHY_STYLES = {
@@ -54,6 +52,7 @@ const COMMON_TYPOGRAPHY_STYLES = {
   textDecoration: "none",
 } as const;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useNavbarStyles = (theme: any) =>
   React.useMemo(
     () => ({
@@ -93,7 +92,6 @@ const useNavbarStyles = (theme: any) =>
 
 const Navbar = React.memo(() => {
   const location = useLocation();
-  const navigate = useNavigate();
   const theme = useTheme();
   const styles = useNavbarStyles(theme);
   const { user, logout, isAuthenticated } = useAuth();

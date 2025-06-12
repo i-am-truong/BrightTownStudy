@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useState } from "react";
 import {
   Container,
   Paper,
@@ -14,7 +16,7 @@ import {
   Step,
   StepLabel,
 } from "@mui/material";
-import { Link, useNavigate, useLocation, replace } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { authService } from "../services/authService";
 
@@ -31,10 +33,7 @@ const ForgotPassword = () => {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleUsernameSubmit = async (e) => {
+  const handleUsernameSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setError("");
     setLoading(true);
@@ -54,14 +53,14 @@ const ForgotPassword = () => {
     }
   };
 
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = (e: { target: { name: any; value: any } }) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handlePasswordSubmit = async (e) => {
+  const handlePasswordSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setError("");
     setLoading(true);
