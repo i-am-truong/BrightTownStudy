@@ -686,7 +686,7 @@ const DiscussionDetail = () => {
               <Pagination
                 count={totalAnswerPages}
                 page={currentAnswerPage}
-                onChange={(event, value) => setCurrentAnswerPage(value)}
+                onChange={(_event, value) => setCurrentAnswerPage(value)}
                 color="primary"
                 size="medium"
               />
